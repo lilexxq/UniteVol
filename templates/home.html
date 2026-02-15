@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block extra_css %}
+<style>
+    .hero-card .hero-inner {
+        max-width: 480px;
+    }
+    .volunteer-illustration {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: var(--space-md);
+    }
+    .volunteer-illustration img {
+        max-height: calc(100vh - 380px);
+        width: auto;
+        max-width: min(95vw, 900px);
+        height: auto;
+        display: block;
+        object-fit: contain;
+    }
+    @media (max-width: 600px) {
+        .volunteer-illustration img {
+            max-height: calc(100vh - 400px);
+            max-width: min(98vw, 600px);
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<section class="hero card hero-card" style="padding: var(--space-xl); background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-soft) 100%); color: white; border-radius: var(--radius-lg);">
+    <div class="hero-inner">
+        <h1 class="page-title" style="color: white; font-size: 2rem; margin-bottom: var(--space-sm);">
+            Volunteer Platform
+        </h1>
+        <p style="font-size: 1.125rem; opacity: 0.95; margin: 0 0 var(--space-lg); line-height: 1.6;">
+            A platform that connects volunteers with meaningful social projects.
+            Find opportunities, apply easily, and make a real impact in your community.
+        </p>
+        <a href="/projects" class="btn" style="background: white; color: var(--color-primary);">
+            View Projects
+        </a>
+    </div>
+</section>
+
+<section class="volunteer-illustration" aria-hidden="true">
+    <img src="{{ url_for('static', filename='images/volunteer-hero.png') }}" alt="Volunteers helping the community">
+</section>
+
+{% endblock %}

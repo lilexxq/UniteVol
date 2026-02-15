@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Panel{% endblock %}
+
+{% block content %}
+
+<h1 class="page-title">Admin Panel</h1>
+
+{% for app in applications %}
+<div class="card" style="padding: var(--space-md);">
+    <h2 style="font-size: 1.125rem; font-weight: 600; margin: 0 0 var(--space-sm); color: var(--color-text);">
+        {{ app.project.title }}
+    </h2>
+    <p style="margin: 0 0 var(--space-xs); color: var(--color-text-muted); font-size: 0.9375rem;">
+        <strong>Name:</strong> {{ app.name }}
+    </p>
+    <p style="margin: 0 0 var(--space-xs); color: var(--color-text-muted); font-size: 0.9375rem;">
+        <strong>Email:</strong> {{ app.email }}
+    </p>
+    <p style="margin: 0 0 var(--space-sm); color: var(--color-text-muted); font-size: 0.9375rem;">
+        <strong>Organisation:</strong> {{ app.organisation }}
+    </p>
+    <p style="margin: 0 0 var(--space-sm);">
+        <span style="display: inline-block; font-weight: 500; font-size: 0.875rem; padding: 4px 10px; border-radius: var(--radius-full); background: var(--color-primary-light); color: var(--color-text);">
+            {{ app.status }}
+        </span>
+    </p>
+    {% if app.status == "pending" %}
+    <div style="display: flex; gap: var(--space-xs); margin-top: var(--space-sm);">
+        <a href="/admin/accept/{{ app.id }}" class="btn btn-primary">Accept</a>
+        <a href="/admin/reject/{{ app.id }}" class="btn btn-secondary">Reject</a>
+    </div>
+    {% endif %}
+</div>
+{% else %}
+<div class="card" style="text-align: center; padding: var(--space-xl);">
+    <p style="color: var(--color-text-muted); margin: 0;">No applications yet.</p>
+</div>
+{% endfor %}
+
+{% endblock %}

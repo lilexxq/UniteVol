@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Volunteer Platform{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #f0f5ef;
+            --color-surface: #ffffff;
+            --color-primary: #5a9b6e;
+            --color-primary-soft: #7cb083;
+            --color-primary-light: #b8d4be;
+            --color-text: #2d3a2f;
+            --color-text-muted: #5c6b60;
+            --color-border: #e0e8de;
+            --shadow-soft: 0 2px 12px rgba(90, 155, 110, 0.08);
+            --shadow-card: 0 4px 20px rgba(90, 155, 110, 0.12);
+            --radius-sm: 10px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-full: 9999px;
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            background: var(--color-bg);
+            color: var(--color-text);
+            font-size: 16px;
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: var(--color-surface);
+            padding: var(--space-sm) var(--space-md);
+            box-shadow: var(--shadow-soft);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .navbar-links {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            flex-wrap: wrap;
+        }
+
+        .navbar a {
+            color: var(--color-text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9375rem;
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-sm);
+            transition: color 0.2s, background 0.2s;
+        }
+
+        .navbar a:hover {
+            color: var(--color-primary);
+            background: var(--color-primary-light);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: var(--space-lg) var(--space-md);
+        }
+
+        .page-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--color-text);
+            margin: 0 0 var(--space-md);
+            letter-spacing: -0.02em;
+        }
+
+        .card {
+            background: var(--color-surface);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-card);
+            padding: var(--space-md);
+            margin-bottom: var(--space-md);
+        }
+
+        .card:last-child {
+            margin-bottom: 0;
+        }
+
+        .btn {
+            display: inline-block;
+            font-family: inherit;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            padding: 12px 20px;
+            border-radius: var(--radius-sm);
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .btn-primary {
+            background: var(--color-primary);
+            color: white;
+            box-shadow: 0 2px 8px rgba(90, 155, 110, 0.35);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 4px 12px rgba(90, 155, 110, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--color-surface);
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary-light);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--color-text-muted);
+        }
+
+        .btn-ghost:hover {
+            color: var(--color-primary);
+        }
+
+        .btn-danger {
+            background: #e8a0a0;
+            color: #8b3a3a;
+        }
+
+        .form-group {
+            margin-bottom: var(--space-sm);
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            color: var(--color-text);
+            margin-bottom: var(--space-xs);
+            font-size: 0.9375rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            font-family: inherit;
+            font-size: 1rem;
+            padding: 12px 16px;
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            background: var(--color-surface);
+            color: var(--color-text);
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-primary-soft);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .link-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--color-text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: var(--space-md);
+            transition: color 0.2s;
+        }
+
+        .link-back:hover {
+            color: var(--color-primary);
+        }
+
+        @media (max-width: 600px) {
+            .navbar-inner {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .navbar-links {
+                justify-content: center;
+            }
+            .container {
+                padding: var(--space-md) var(--space-sm);
+            }
+            .page-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="/" class="navbar-brand">Volunteer Platform</a>
+            <div class="navbar-links">
+                <a href="/">Home</a>
+                <a href="/projects">Projects</a>
+                <a href="/projects/new">Add Project</a>
+                <a href="/admin">Admin</a>
+            </div>
+        </div>
+    </nav>
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

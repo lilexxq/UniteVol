@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Add New Project{% endblock %}
+
+{% block content %}
+
+<h1 class="page-title">Add a New Volunteer Project</h1>
+
+<div class="card" style="padding: var(--space-lg);">
+    <form method="POST" action="/projects/save">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" required placeholder="e.g. Clean City">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" required placeholder="Describe the project and what volunteers will do."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Save project</button>
+    </form>
+</div>
+
+{% endblock %}
